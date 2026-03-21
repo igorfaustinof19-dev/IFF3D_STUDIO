@@ -1,0 +1,1115 @@
+[index.html.html](https://github.com/user-attachments/files/26153445/index.html.html)
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFF3D STUDIO • Loja de Modelos 3D</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #00a8e1;
+            --primary-dark: #0088b3;
+            --dark-1: #0a0f1e;
+            --dark-2: #1a1f2e;
+            --dark-3: #2a3a4a;
+            --text: #ffffff;
+            --text-muted: #b0c0d0;
+            --price: #4CAF50;
+            --pix: #32BCAD;
+            --whatsapp: #25D366;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(-45deg, #0a0f1e, #1a1f2e, #0f1419, #1a2332);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(0, 168, 225, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            opacity: 0;
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 30s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 28s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 22s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 26s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 24s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 29s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 4s; animation-duration: 27s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 1s; animation-duration: 23s; }
+        .particle:nth-child(10) { left: 95%; animation-delay: 3s; animation-duration: 31s; }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+        
+        .grid-lines {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(0, 168, 225, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 168, 225, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+        
+        .glow-effect {
+            position: fixed;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 168, 225, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+        
+        .glow-1 { top: -200px; left: -200px; }
+        .glow-2 { bottom: -200px; right: -200px; animation-delay: 4s; }
+        
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        .header, .container, footer, .contact-floating { position: relative; z-index: 1; }
+
+        .header {
+            background: rgba(10, 15, 30, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 168, 225, 0.1);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 20px rgba(0, 168, 225, 0.5);
+            letter-spacing: 2px;
+        }
+        .logo-text span { color: var(--primary); }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .model-card {
+            background: rgba(30, 42, 58, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 168, 225, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .model-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 168, 225, 0.3);
+        }
+        .model-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--dark-3);
+        }
+        .model-info {
+            padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .model-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .model-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+        .model-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--price);
+            margin: 0.5rem 0;
+        }
+        .model-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .model-link {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        .model-link:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 20px rgba(0, 168, 225, 0.5);
+        }
+
+        #adminSection { display: none; }
+        .admin-wrapper {
+            background: rgba(10, 15, 30, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 168, 225, 0.3);
+            margin-top: 1rem;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(26, 31, 46, 0.8);
+            border: 1px solid var(--dark-3);
+            border-radius: 8px;
+            color: white;
+        }
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 168, 225, 0.3);
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 20px rgba(0, 168, 225, 0.5);
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--dark-3);
+            overflow-x: auto;
+        }
+        .admin-nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s;
+        }
+        .admin-nav-btn:hover { color: white; }
+        .admin-nav-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .admin-tab-content {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+        .admin-tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .admin-table th,
+        .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--dark-3);
+        }
+        .admin-table th {
+            color: var(--primary);
+            background: rgba(0, 168, 225, 0.1);
+        }
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-edit { background: #ff9800; color: white; }
+        .btn-edit:hover { background: #f57c00; }
+        .btn-delete { background: #f44336; color: white; }
+        .btn-delete:hover { background: #d32f2f; }
+        .btn-add-new {
+            background: var(--price);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-add-new:hover {
+            background: #43a047;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .result-box {
+            background: rgba(26, 31, 46, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 168, 225, 0.2);
+        }
+        .price-display {
+            font-size: 3rem;
+            color: var(--price);
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .post-preview {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .pix-section {
+            background: rgba(50, 188, 173, 0.1);
+            border: 2px solid var(--pix);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+        .pix-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .pix-icon {
+            font-size: 2.5rem;
+            color: var(--pix);
+        }
+        .pix-key-display {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            border: 1px dashed var(--pix);
+        }
+        .pix-key-value {
+            font-size: 1.5rem;
+            color: var(--pix);
+            font-weight: bold;
+            word-break: break-all;
+        }
+        .thank-you-preview {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid var(--price);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        .copy-btn {
+            background: var(--pix);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .copy-btn:hover {
+            background: #2aa193;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: var(--dark-2);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(0, 168, 225, 0.3);
+        }
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .whatsapp-sender {
+            background: rgba(37, 211, 102, 0.1);
+            border: 2px solid var(--whatsapp);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+        .whatsapp-sender h3 {
+            color: var(--whatsapp);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sender-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .btn-whatsapp-send {
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .btn-whatsapp-send:hover {
+            background: #1ebc57;
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--dark-3);
+            margin-top: auto;
+            background: rgba(10, 15, 30, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+        .admin-link {
+            color: var(--dark-3);
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .admin-link:hover { color: var(--primary); }
+
+        .contact-floating {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 99;
+        }
+        .contact-btn {
+            width: 55px; height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+        .contact-btn.whatsapp { background: #25D366; }
+        .contact-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+        }
+        .contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+        .spinner {
+            border: 4px solid var(--dark-3);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #thankYouPage {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 15, 30, 0.98);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .thank-you-card {
+            background: var(--dark-2);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--price);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(76, 175, 80, 0.3);
+        }
+        .thank-you-icon {
+            font-size: 4rem;
+            color: var(--price);
+            margin-bottom: 1rem;
+        }
+        .thank-you-title {
+            font-size: 2rem;
+            color: var(--price);
+            margin-bottom: 1rem;
+        }
+        .thank-you-message {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .close-thanks {
+            background: var(--price);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .calc-grid, .sender-grid { grid-template-columns: 1fr; }
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .logo-text { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FUNDO INFINITO -->
+    <div class="particles">
+        <div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="grid-lines"></div>
+    <div class="glow-effect glow-1"></div>
+    <div class="glow-effect glow-2"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-text">IFF3D <span>STUDIO</span></div>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">
+                <i class="fas fa-store"></i> Loja Oficial de Modelos 3D
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
+        
+        <!-- VITRINE PÚBLICA -->
+        <section id="publicStore">
+            <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 2rem; text-shadow: 0 0 20px rgba(0, 168, 225, 0.5);">
+                🎨 Modelos em Destaque
+            </h2>
+            
+            <div id="loadingModels" class="loading">
+                <div class="spinner"></div>
+                <p>Carregando modelos do banco de dados...</p>
+            </div>
+            
+            <div class="models-grid" id="modelsGrid"></div>
+        </section>
+
+        <!-- ÁREA ADMINISTRATIVA -->
+        <section id="adminSection">
+            <div class="admin-wrapper">
+                
+                <!-- Tela de Login -->
+                <div id="loginScreen" class="login-box">
+                    <h2 style="color: var(--primary); margin-bottom: 1.5rem;">🔐 Acesso Restrito</h2>
+                    <div class="input-group">
+                        <label>Usuário</label>
+                        <input type="text" id="adminUser" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="input-group">
+                        <label>Senha</label>
+                        <input type="password" id="adminPass" placeholder="Digite sua senha">
+                    </div>
+                    <button class="btn-primary" onclick="adminLogin()">Entrar no Painel</button>
+                    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); cursor: pointer;" onclick="showPublicStore()">
+                        ← Voltar para a loja
+                    </p>
+                </div>
+
+                <!-- Painel Dashboard -->
+                <div id="dashboardPanel" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="color: white;">Painel de Controle</h3>
+                        <button onclick="adminLogout()" style="background: #f44336; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Sair</button>
+                    </div>
+
+                    <div class="admin-nav">
+                        <button class="admin-nav-btn active" onclick="switchTab('tab-models')">📦 Modelos</button>
+                        <button class="admin-nav-btn" onclick="switchTab('tab-pricing')">🧮 Precificação</button>
+                        <button class="admin-nav-btn" onclick="switchTab('tab-posts')">📱 Posts</button>
+                        <button class="admin-nav-btn" onclick="switchTab('tab-pix')">💳 PIX</button>
+                    </div>
+
+                    <!-- ABA MODELOS -->
+                    <div id="tab-models" class="admin-tab-content active">
+                        <button class="btn-add-new" onclick="openAddModal()">+ Novo Modelo</button>
+                        <table class="admin-table">
+                            <thead>
+                                <tr><th>Nome</th><th>Preço</th><th>Peso</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody id="adminModelsTable"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- ABA PRECIFICAÇÃO -->
+                    <div id="tab-pricing" class="admin-tab-content">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">🧮 Calculadora</h3>
+                        <div class="calc-grid">
+                            <div>
+                                <div class="input-group"><label>Material (R$/kg)</label><input type="number" id="calcMaterial" value="150"></div>
+                                <div class="input-group"><label>Peso (g)</label><input type="number" id="calcWeight" value="250"></div>
+                                <div class="input-group"><label>Tempo (h)</label><input type="number" id="calcTime" value="8"></div>
+                                <div class="input-group">
+                                    <label>Complexidade</label>
+                                    <select id="calcComplexity">
+                                        <option value="1">Simples</option>
+                                        <option value="1.5" selected>Média</option>
+                                        <option value="2">Alta</option>
+                                    </select>
+                                </div>
+                                <button class="btn-primary" onclick="calculatePrice()">Calcular</button>
+                            </div>
+                            <div>
+                                <div class="result-box">
+                                    <div style="color: var(--text-muted);">Preço Sugerido</div>
+                                    <div class="price-display" id="priceResult">R$ 0,00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ABA POSTS -->
+                    <div id="tab-posts" class="admin-tab-content">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">📱 Legendas</h3>
+                        <div class="input-group">
+                            <label>Modelo</label>
+                            <select id="postModelSelect" onchange="generatePost()"></select>
+                        </div>
+                        <div class="post-preview" id="postPreviewText">Selecione um modelo...</div>
+                        <button class="btn-primary" onclick="copyPost()">📋 Copiar</button>
+                    </div>
+
+                    <!-- ABA PIX -->
+                    <div id="tab-pix" class="admin-tab-content">
+                        <h3 style="color: var(--pix); margin-bottom: 1rem;">💳 Configurar PIX</h3>
+                        
+                        <div class="pix-section">
+                            <div class="input-group">
+                                <label>Sua Chave PIX</label>
+                                <input type="text" id="pixKey" placeholder="Digite sua chave PIX">
+                            </div>
+                            <div class="input-group">
+                                <label>Nome do Beneficiário</label>
+                                <input type="text" id="pixName" placeholder="Seu nome">
+                            </div>
+                            <button class="btn-primary" onclick="savePixConfig()" style="background: var(--pix);">💾 Salvar</button>
+                            
+                            <div class="pix-key-display" id="pixKeyDisplay" style="display: none;">
+                                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Sua Chave:</p>
+                                <div class="pix-key-value" id="pixKeyValue"></div>
+                            </div>
+                        </div>
+
+                        <div class="whatsapp-sender">
+                            <h3><i class="fab fa-whatsapp"></i> Enviar PIX</h3>
+                            <div class="sender-grid">
+                                <div class="input-group">
+                                    <label>📱 WhatsApp do Cliente</label>
+                                    <input type="text" id="clientWhatsapp" placeholder="5569992958235">
+                                </div>
+                                <div class="input-group">
+                                    <label>🎨 Modelo</label>
+                                    <select id="clientModelSelect"></select>
+                                </div>
+                            </div>
+                            <button class="btn-whatsapp-send" onclick="sendPixToClient()">
+                                <i class="fab fa-whatsapp"></i> Enviar Agora!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL ADICIONAR MODELO -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h2>Novo Modelo</h2>
+            <div class="input-group"><label>Nome</label><input type="text" id="newName" placeholder="Ex: Dragão"></div>
+            <div class="input-group"><label>Preço (R$)</label><input type="number" id="newPrice" step="0.01" placeholder="49.90"></div>
+            <div class="input-group"><label>Peso (g)</label><input type="number" id="newWeight" placeholder="250"></div>
+            <div class="input-group"><label>Tempo (h)</label><input type="number" id="newTime" placeholder="8"></div>
+            <div class="input-group"><label>URL da Imagem</label><input type="text" id="newImg" placeholder="https://..."></div>
+            <div class="input-group"><label>Descrição</label><textarea id="newDesc" rows="3"></textarea></div>
+            <button class="btn-primary" onclick="saveModelToFirebase()">💾 Salvar no Banco de Dados</button>
+            <button class="close-btn" onclick="closeAddModal()" style="background: var(--dark-3); border: none; margin-top: 10px; width: 100%; padding: 0.8rem; border-radius: 8px; color: white; cursor: pointer;">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- CONTATOS FLUTUANTES - SEU WHATSAPP CONFIGURADO -->
+    <div class="contact-floating">
+        <a href="https://wa.me/5569992958235" class="contact-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/3d_iffstudio" class="contact-btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 IFF3D STUDIO</p>
+        <p>
+            <a href="https://wa.me/5569992958235" target="_blank">
+                <i class="fab fa-whatsapp"></i> (69) 99295-8235
+            </a> | 
+            <a href="https://instagram.com/3d_iffstudio" target="_blank">@3d_iffstudio</a>
+        </p>
+        <div style="margin-top: 1rem;">
+            <span class="admin-link" onclick="goToAdmin()">Área Administrativa</span>
+        </div>
+    </footer>
+
+    <!-- FIREBASE SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // 🔥 CONFIGURAÇÃO DO FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyBC7YfqRJEibbN2XjlNdqpeI4jiwiBFM",
+            authDomain: "iff3dstudio.firebaseapp.com",
+            databaseURL: "https://iff3dstudio-default-rtdb.firebaseio.com",
+            projectId: "iff3dstudio",
+            storageBucket: "iff3dstudio.firebasestorage.app",
+            messagingSenderId: "850021936409",
+            appId: "1:850021936409:web:1cb83949e47a33c8b12988",
+            measurementId: "G-4K54CK9X86"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const modelsCollection = collection(db, "modelos");
+        let allModels = [];
+        let currentPixConfig = {};
+
+        // 🔥 CARREGAR MODELOS AUTOMATICAMENTE DO FIREBASE
+        onSnapshot(query(modelsCollection, orderBy("createdAt", "desc")), (snapshot) => {
+            allModels = [];
+            const grid = document.getElementById('modelsGrid');
+            const adminTable = document.getElementById('adminModelsTable');
+            const postSelect = document.getElementById('postModelSelect');
+            const clientSelect = document.getElementById('clientModelSelect');
+            
+            grid.innerHTML = '';
+            adminTable.innerHTML = '';
+            postSelect.innerHTML = '<option value="">Selecione...</option>';
+            clientSelect.innerHTML = '<option value="">Selecione...</option>';
+
+            if (snapshot.empty) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 2rem;">Nenhum modelo. Adicione no Admin!</p>';
+                document.getElementById('loadingModels').style.display = 'none';
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const id = doc.id;
+                allModels.push({ id, ...data });
+
+                // Card na loja pública
+                grid.innerHTML += `
+                    <div class="model-card">
+                        <img src="${data.img || 'https://via.placeholder.com/300x200'}" class="model-image">
+                        <div class="model-info">
+                            <h3 class="model-title">${data.name}</h3>
+                            <p class="model-description">${data.desc || ''}</p>
+                            <div class="model-stats">
+                                <span><i class="fas fa-cube"></i> ${data.weight || '?'}g</span>
+                                <span><i class="fas fa-clock"></i> ${data.time || '?'}h</span>
+                            </div>
+                            <div class="model-price">R$ ${parseFloat(data.price).toFixed(2).replace('.', ',')}</div>
+                            <button class="model-link" onclick="window.open('https://wa.me/5569992958235?text=Olá! Quero comprar o modelo ${data.name}', '_blank')">📱 Comprar</button>
+                        </div>
+                    </div>
+                `;
+
+                // Tabela no admin
+                adminTable.innerHTML += `
+                    <tr>
+                        <td>${data.name}</td>
+                        <td>R$ ${parseFloat(data.price).toFixed(2)}</td>
+                        <td>${data.weight || '?'}g</td>
+                        <td><button class="action-btn btn-delete" onclick="window.deleteModel('${id}')"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                `;
+
+                // Opções para selects
+                const option = `<option value="${data.name}" data-price="${data.price}">${data.name} - R$ ${parseFloat(data.price).toFixed(2)}</option>`;
+                postSelect.innerHTML += option;
+                clientSelect.innerHTML += option;
+            });
+
+            document.getElementById('loadingModels').style.display = 'none';
+            console.log('✅ Modelos carregados do Firebase:', snapshot.size);
+        });
+
+        // 🔥 CARREGAR CONFIGURAÇÃO PIX DO FIREBASE
+        onSnapshot(doc(db, "pix_config", "settings"), (doc) => {
+            if (doc.exists()) {
+                currentPixConfig = doc.data();
+                document.getElementById('pixKey').value = currentPixConfig.key || '';
+                document.getElementById('pixName').value = currentPixConfig.name || '';
+                document.getElementById('pixKeyDisplay').style.display = 'block';
+                document.getElementById('pixKeyValue').textContent = currentPixConfig.key || '';
+                console.log('✅ PIX configurado carregado do Firebase');
+            }
+        });
+
+        // 🔥 SALVAR MODELO NO FIREBASE (BACKUP AUTOMÁTICO)
+        window.saveModelToFirebase = async () => {
+            const name = document.getElementById('newName').value;
+            const price = document.getElementById('newPrice').value;
+            const weight = document.getElementById('newWeight').value;
+            const time = document.getElementById('newTime').value;
+            const img = document.getElementById('newImg').value;
+            const desc = document.getElementById('newDesc').value;
+
+            if(!name || !price) { 
+                alert('⚠️ Preencha nome e preço!'); 
+                return; 
+            }
+
+            try {
+                // 🔥 SALVA NO FIREBASE AUTOMATICAMENTE
+                await addDoc(modelsCollection, { 
+                    name, 
+                    price, 
+                    weight, 
+                    time, 
+                    img, 
+                    desc, 
+                    createdAt: new Date().toISOString() 
+                });
+                
+                alert('✅ Modelo salvo no banco de dados!');
+                closeAddModal();
+                
+                // Limpar campos
+                document.getElementById('newName').value = '';
+                document.getElementById('newPrice').value = '';
+                document.getElementById('newWeight').value = '';
+                document.getElementById('newTime').value = '';
+                document.getElementById('newImg').value = '';
+                document.getElementById('newDesc').value = '';
+                
+            } catch (error) {
+                console.error('❌ Erro ao salvar:', error);
+                alert('❌ Erro ao salvar. Verifique o Firebase!');
+            }
+        };
+
+        // 🔥 EXCLUIR MODELO DO FIREBASE
+        window.deleteModel = async (id) => {
+            if(confirm('Excluir este modelo?')) {
+                try {
+                    await deleteDoc(doc(db, "modelos", id));
+                    alert('✅ Excluído!');
+                } catch (error) {
+                    console.error('❌ Erro:', error);
+                    alert('❌ Erro ao excluir');
+                }
+            }
+        };
+
+        // 🔥 SALVAR CONFIGURAÇÃO PIX NO FIREBASE
+        window.savePixConfig = async () => {
+            const key = document.getElementById('pixKey').value;
+            const name = document.getElementById('pixName').value;
+
+            if(!key || !name) { 
+                alert('⚠️ Preencha tudo!'); 
+                return; 
+            }
+
+            try {
+                await setDoc(doc(db, "pix_config", "settings"), { 
+                    key, 
+                    name, 
+                    updatedAt: new Date().toISOString() 
+                });
+                
+                alert('✅ PIX configurado e salvo!');
+                currentPixConfig = { key, name };
+                document.getElementById('pixKeyDisplay').style.display = 'block';
+                document.getElementById('pixKeyValue').textContent = key;
+                
+            } catch (error) {
+                console.error('❌ Erro:', error);
+                alert('❌ Erro ao salvar PIX');
+            }
+        };
+
+        // 🔥 ENVIAR PIX VIA WHATSAPP
+        window.sendPixToClient = () => {
+            const phone = document.getElementById('clientWhatsapp').value.replace(/\D/g, '');
+            const select = document.getElementById('clientModelSelect');
+            const option = select.options[select.selectedIndex];
+            const model = option.value;
+            const price = option.dataset.price;
+
+            if(!phone || !model) { 
+                alert('⚠️ Preencha tudo!'); 
+                return; 
+            }
+            if(!currentPixConfig.key) { 
+                alert('⚠️ Configure seu PIX primeiro!'); 
+                return; 
+            }
+
+            const msg = `Olá! 👋\n\n📦 *${model}*\n💰 *R$ ${parseFloat(price).toFixed(2).replace('.', ',')}*\n\n💳 *PIX:*\n${currentPixConfig.key}\n${currentPixConfig.name}\n\nEnvie o comprovante!`;
+            
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        window.copyPixKey = () => {
+            navigator.clipboard.writeText(document.getElementById('pixKey').value);
+            alert('Copiado! 📋');
+        };
+    </script>
+
+    <script>
+        function goToAdmin() {
+            document.getElementById('publicStore').style.display = 'none';
+            document.getElementById('adminSection').style.display = 'block';
+        }
+
+        function showPublicStore() {
+            document.getElementById('adminSection').style.display = 'none';
+            document.getElementById('publicStore').style.display = 'block';
+        }
+
+        function adminLogin() {
+            if(document.getElementById('adminUser').value === 'Igor@1213' && document.getElementById('adminPass').value === 'Igor@1213') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardPanel').style.display = 'block';
+            } else {
+                alert('Senha incorreta!');
+            }
+        }
+
+        function adminLogout() {
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('dashboardPanel').style.display = 'none';
+            showPublicStore();
+        }
+
+        function switchTab(id) {
+            document.querySelectorAll('.admin-tab-content').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.admin-nav-btn').forEach(e => e.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function openAddModal() { document.getElementById('addModal').style.display = 'flex'; }
+        function closeAddModal() { document.getElementById('addModal').style.display = 'none'; }
+
+        function calculatePrice() {
+            const m = parseFloat(document.getElementById('calcMaterial').value) || 0;
+            const w = parseFloat(document.getElementById('calcWeight').value) || 0;
+            const t = parseFloat(document.getElementById('calcTime').value) || 0;
+            const c = parseFloat(document.getElementById('calcComplexity').value) || 1;
+            const total = ((m / 1000) * w + t * 0.5 + t * 15) * 1.25 * c;
+            document.getElementById('priceResult').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function generatePost() {
+            const model = document.getElementById('postModelSelect').value;
+            if(!model) return;
+            document.getElementById('postPreviewText').innerText = `🚀 ${model} disponível!\n\n✨ Detalhes incríveis\n🖨️ Pronto para imprimir\n\n#IFF3DStudio #Modelo3D`;
+        }
+
+        function copyPost() {
+            navigator.clipboard.writeText(document.getElementById('postPreviewText').innerText);
+            alert('Copiado!');
+        }
+
+        window.onclick = e => { if(e.target === document.getElementById('addModal')) closeAddModal(); }
+        calculatePrice();
+    </script>
+</body>
+</html>
